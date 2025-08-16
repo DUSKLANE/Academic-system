@@ -1,0 +1,159 @@
+# 教务系统逆向工程工具
+
+[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+一个用于逆向工程各高校教务系统的Python工具集，支持自动化登录、数据爬取和课程信息获取。
+
+## 🎯 项目简介
+
+本项目通过逆向工程的方式，实现了对多个高校教务系统的自动化访问。主要功能包括：
+
+- 🔐 **自动化登录**：支持多种加密算法的密码加密和登录流程
+- 🏫 **多校支持**：目前已支持山东交通学院
+- 🛡️ **安全访问**：模拟真实浏览器行为，避免被反爬虫机制拦截
+
+## 🚀 支持的高校
+
+| 高校名称 | 状态 | 加密方式 | 备注 |
+|---------|------|----------|------|
+| 山东交通学院 | ✅ 已完成 | AES-ECB | 无 |
+
+## 📋 功能特性
+
+### 核心功能
+- **智能登录**：自动获取登录页面参数，支持动态加密密钥
+- **会话管理**：维护登录状态，支持后续数据请求
+- **数据解析**：自动解析HTML页面，提取结构化数据
+- **错误处理**：完善的异常处理和重试机制
+
+### 数据获取
+- **成绩数据**：课程名称、学分、成绩、考试时间等
+- **课表信息**：课程安排、上课时间、教室、教师等
+- **课程详情**：课程类型、考核方式等
+
+## 🛠️ 技术架构
+
+### 核心技术栈
+- **Python 3.7+**：主要开发语言
+- **Requests**：HTTP请求处理
+- **BeautifulSoup4**：HTML解析
+- **PyCryptodome**：加密算法实现
+- **PyExecJS**：JavaScript代码执行
+
+### 加密算法支持
+- **AES-ECB**：山东交通学院使用
+- **DES**：聊城大学使用
+- **Base64编码**：数据编码处理
+
+## 📦 安装说明
+
+### 环境要求
+- Python 3.7 或更高版本
+- pip 包管理器
+
+### 安装步骤
+
+1. 克隆项目到本地
+```bash
+git clone <repository-url>
+cd 教务系统
+```
+
+2. 安装依赖包
+```bash
+pip install -r requirements.txt
+```
+
+3. 验证安装
+```bash
+python -c "import requests, bs4, Crypto; print('安装成功！')"
+```
+
+## 🔧 使用方法
+
+### 基本使用示例
+
+#### 山东交通学院教务系统
+
+```python
+from sdjt import Login, getAllScore, getWeekTimetable
+
+# 创建登录实例
+login = Login('your_username', 'your_password')
+
+if login.islogin:
+    print("登录成功！")
+    
+    # 获取成绩
+    scores = getAllScore(login.session)
+    print("成绩数据:", scores)
+    
+    # 获取本周课表
+    timetable = getWeekTimetable(login.session)
+    print("本周课表:", timetable)
+else:
+    print("登录失败！")
+```
+
+
+
+## 🔒 安全说明
+
+### 使用注意事项
+- **仅限学习研究**：本项目仅供学习和研究使用
+- **遵守校规**：请遵守各高校的使用条款和规定
+- **合理使用**：避免频繁请求，以免对服务器造成压力
+- **隐私保护**：妥善保管个人账号信息，不要泄露给他人
+
+### 技术安全
+- 使用HTTPS协议进行数据传输
+- 支持会话管理和Cookie处理
+- 模拟真实浏览器行为，降低被检测风险
+
+## 🐛 常见问题
+
+### Q: 登录失败怎么办？
+A: 请检查以下几点：
+- 用户名和密码是否正确
+- 网络连接是否正常
+- 学校教务系统是否维护中
+- 是否需要验证码（部分学校）
+
+### Q: 如何添加新的学校支持？
+A: 可以参考现有代码结构：
+1. 分析目标学校的登录流程
+2. 实现相应的加密算法
+3. 编写登录和数据获取逻辑
+4. 添加错误处理机制
+
+### Q: 数据获取失败？
+A: 可能的原因：
+- 登录状态已过期，需要重新登录
+- 学校系统更新，需要调整解析逻辑
+- 网络问题或服务器响应异常
+
+## 🤝 贡献指南
+
+欢迎提交Issue和Pull Request来改进项目！
+
+### 贡献方式
+1. Fork 本项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
+
+### 开发规范
+- 添加适当的注释和文档字符串
+- 确保代码的可读性和可维护性
+- 测试新功能的有效性
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+
+---
+
+**⚠️ 免责声明**：本项目仅供学习和研究使用，使用者需自行承担使用风险，开发者不承担任何法律责任。
