@@ -1,0 +1,5 @@
+beautifulsoup4==4.13.4
+pycryptodome==3.23.0
+pyexecjs==1.5.1
+Requests==2.32.4
+sqlmodel==0.0.24
