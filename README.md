@@ -15,36 +15,18 @@
 
 ## 🚀 支持的高校
 
-| 高校名称 | 状态 | 加密方式 | 备注 |
-|---------|------|----------|------|
-| 山东交通学院 | ✅ 已完成 | AES-ECB | 无 |
+| 高校名称 | 状态 | 加密方式 | 备注 | 详细文档 |
+|---------|------|----------|------|----------|
+| 山东交通学院 | ✅ 已完成 | AES-ECB | 无 | [📖 查看详情](山东交通学院/README.md) |
 
-## 📋 功能特性
+## 📚 详细文档
 
-### 核心功能
-- **智能登录**：自动获取登录页面参数，支持动态加密密钥
-- **会话管理**：维护登录状态，支持后续数据请求
-- **数据解析**：自动解析HTML页面，提取结构化数据
-- **错误处理**：完善的异常处理和重试机制
+### 🏫 各高校使用指南
 
-### 数据获取
-- **成绩数据**：课程名称、学分、成绩、考试时间等
-- **课表信息**：课程安排、上课时间、教室、教师等
-- **课程详情**：课程类型、考核方式等
+- **[山东交通学院](山东交通学院/README.md)** - AES-ECB加密，支持成绩查询、课表查询
+- **聊城大学** - DES加密，支持SSO登录（开发中）
 
-## 🛠️ 技术架构
-
-### 核心技术栈
-- **Python 3.7+**：主要开发语言
-- **Requests**：HTTP请求处理
-- **BeautifulSoup4**：HTML解析
-- **PyCryptodome**：加密算法实现
-- **PyExecJS**：JavaScript代码执行
-
-### 加密算法支持
-- **AES-ECB**：山东交通学院使用
-- **DES**：聊城大学使用
-- **Base64编码**：数据编码处理
+点击上方链接查看各高校的详细使用方法、代码示例和常见问题解答。
 
 ## 📦 安装说明
 
@@ -57,7 +39,7 @@
 1. 克隆项目到本地
 ```bash
 git clone <repository-url>
-cd 教务系统
+cd <project-directory>
 ```
 
 2. 安装依赖包
@@ -69,34 +51,6 @@ pip install -r requirements.txt
 ```bash
 python -c "import requests, bs4, Crypto; print('安装成功！')"
 ```
-
-## 🔧 使用方法
-
-### 基本使用示例
-
-#### 山东交通学院教务系统
-
-```python
-from sdjt import Login, getAllScore, getWeekTimetable
-
-# 创建登录实例
-login = Login('your_username', 'your_password')
-
-if login.islogin:
-    print("登录成功！")
-    
-    # 获取成绩
-    scores = getAllScore(login.session)
-    print("成绩数据:", scores)
-    
-    # 获取本周课表
-    timetable = getWeekTimetable(login.session)
-    print("本周课表:", timetable)
-else:
-    print("登录失败！")
-```
-
-
 
 ## 🔒 安全说明
 
